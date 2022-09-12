@@ -16,7 +16,7 @@ class FavoriteViewController: UIViewController, ReloadDelegate {
         tableView.register(TableViewCell.self, forCellReuseIdentifier: TableViewCell.identifier)
         return tableView
     }()
-    var imageData: [Data] = []
+    private var imageData: [Data] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -26,11 +26,13 @@ class FavoriteViewController: UIViewController, ReloadDelegate {
         tableView.dataSource = self
         
     }
+    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
         reloadTable()
     }
+    
     override func viewDidLayoutSubviews() {
         tableView.frame = view.bounds
     }
@@ -41,7 +43,6 @@ class FavoriteViewController: UIViewController, ReloadDelegate {
         let favoriteCocktails = realm.objects(FavoriteCoctail.self)
         for cocltail in favoriteCocktails {
             let cocktail = Cocktail(strDrink: cocltail.cocktailName, strAlcoholic: cocltail.alcaholic, strInstructions: cocltail.instruction)
-            
             if !cocktails.contains(cocktail){
                 self.imageData.append(cocltail.imageData)
                 self.cocktails.append(cocktail)
@@ -62,7 +63,6 @@ extension FavoriteViewController: UITableViewDataSource, UITableViewDelegate {
             cell.imageData = imageData[indexPath.row]
         }
         cell.cocktail = cocktails[indexPath.row]
-        
         return cell
     }
     

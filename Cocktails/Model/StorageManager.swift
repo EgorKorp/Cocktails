@@ -6,7 +6,6 @@
 //
 
 import Foundation
-
 import RealmSwift
 
 let realm = try! Realm()
@@ -19,7 +18,6 @@ class StorageManager {
         }
     }
     
-    
     static func removedData(_ data: FavoriteCoctail){
         try! realm.write {
             realm.delete(realm.objects(FavoriteCoctail.self).where({
@@ -27,7 +25,6 @@ class StorageManager {
             }))
         }
     }
-    
 }
 
 

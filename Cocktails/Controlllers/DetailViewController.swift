@@ -15,7 +15,6 @@ class DetailViewController: UIViewController {
     var imageData: Data?
     var delegate: ReloadDelegate?
     
-    
     private var righBarButtonItem: UIBarButtonItem!{
         didSet {
             navigationItem.rightBarButtonItem = righBarButtonItem
@@ -27,6 +26,7 @@ class DetailViewController: UIViewController {
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
+    
     private let cocktailImage: UIImageView = {
         let imageView = UIImageView()
         imageView.translatesAutoresizingMaskIntoConstraints = false
@@ -38,12 +38,6 @@ class DetailViewController: UIViewController {
         
         navigationItem.leftBarButtonItem = UIBarButtonItem(barButtonSystemItem: .close, target: self, action: #selector(cancel))
         setupView()
-        
-        if checkForUnic() == false {
-            righBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "heart"), style: .plain, target: self, action: #selector(saveCocktail))
-        } else {
-            righBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "heart.fill"), style: .plain, target: self, action: #selector(deleteCocktail))
-        }
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -92,7 +86,15 @@ class DetailViewController: UIViewController {
             instructionLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -10),
             instructionLabel.bottomAnchor.constraint(equalTo: view.bottomAnchor)
         ])
+        
+        if checkForUnic() == false {
+            righBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "heart"), style: .plain, target: self, action: #selector(saveCocktail))
+        } else {
+            righBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "heart.fill"), style: .plain, target: self, action: #selector(deleteCocktail))
+        }
+        
     }
+    
     private func getIngridents() -> String {
         guard let cocktail = cocktail else { return "" }
         var finalIngridient = ""
@@ -175,14 +177,13 @@ class DetailViewController: UIViewController {
     @objc func cancel() {
         dismiss(animated: true)
     }
+    
     @objc func saveCocktail() {
         let FavoriteCoctail = FavoriteCoctail()
         FavoriteCoctail.cocktailName = title ?? ""
         FavoriteCoctail.instruction = instructionLabel.text
         FavoriteCoctail.imageData = (cocktailImage.image?.pngData())!
         FavoriteCoctail.alcaholic = cocktail?.strAlcoholic ?? ""
-        
-        
         
         StorageManager.savedData(FavoriteCoctail)
         righBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "heart.fill"), style: .plain, target: self, action: #selector(deleteCocktail))
@@ -192,7 +193,6 @@ class DetailViewController: UIViewController {
         let cocktails = realm.objects(FavoriteCoctail.self).contains {
             $0.cocktailName == title
         }
-        
         return cocktails
     }
     
@@ -205,7 +205,4 @@ class DetailViewController: UIViewController {
         StorageManager.removedData(FavoriteCoctail)
         dismiss(animated: true)
     }
-    
-    
-    
 }

@@ -94,8 +94,8 @@
 		F481B0CB28CE1CC200622F3C /* Cocktails */ = {
 			isa = PBXGroup;
 			children = (
-				F481B0F228CE1FA100622F3C /* Controller */,
-				F481B0F328CE1FB100622F3C /* View */,
+				F481B0F228CE1FA100622F3C /* Views */,
+				F481B0F328CE1FB100622F3C /* Controlllers */,
 				F481B0F428CE1FC700622F3C /* Supporting files */,
 				F481B0F528CE1FDB00622F3C /* Networking */,
 				F481B0F628CE1FF600622F3C /* Model */,
@@ -106,15 +106,15 @@
 			path = Cocktails;
 			sourceTree = "<group>";
 		};
-		F481B0F228CE1FA100622F3C /* Controller */ = {
+		F481B0F228CE1FA100622F3C /* Views */ = {
 			isa = PBXGroup;
 			children = (
 				F481B0E028CE1CE800622F3C /* TableViewCell.swift */,
 			);
-			path = Controller;
+			path = Views;
 			sourceTree = "<group>";
 		};
-		F481B0F328CE1FB100622F3C /* View */ = {
+		F481B0F328CE1FB100622F3C /* Controlllers */ = {
 			isa = PBXGroup;
 			children = (
 				F481B0E228CE1D2000622F3C /* SearchViewController.swift */,
@@ -122,7 +122,7 @@
 				F481B0E428CE1D3A00622F3C /* FavoriteViewController.swift */,
 				F481B0E828CE1DB000622F3C /* TabBarController.swift */,
 			);
-			path = View;
+			path = Controlllers;
 			sourceTree = "<group>";
 		};
 		F481B0F428CE1FC700622F3C /* Supporting files */ = {
